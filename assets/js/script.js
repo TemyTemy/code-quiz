@@ -64,13 +64,20 @@ var questions = [
 var questionsAsked = [];
 var correctlyAnswered = [];
 
+const TOTAL_TIME_ALLOWED = 100;
+const WRONG_VALUE_TIME_PENALTY = 10;
+
+var timeLeftToCompleteQuestions;
+
 const buttonEl = document.getElementById('startBtn');
 buttonEl.addEventListener('click', doStartQuiz);
 
  function doStartQuiz() {
    hideIntroPart();
    showQuestionsPart();
+   timeLeftToCompleteQuestions = TOTAL_TIME_ALLOWED;
    throwQuestionsAtUser();
+   doTiming();
  }
 
  function hideIntroPart() {
@@ -100,10 +107,15 @@ buttonEl.addEventListener('click', doStartQuiz);
   qpart.innerHTML = "<p>" + text + "</p>";
  }
 
+ function hideAnswerPart() {
+  var qpart = document.querySelector(".answer-part");
+  qpart.style.display = "none";
+  qpart.innerHTML = "<p></p>";
+ }
+
  function doOneQuestion(questionItem) {
     var questionText = "<h1>" + questionItem.question + "</h1>";
     var qpart = document.querySelector(".question-part");
-    console.log('Already asked: ', questionsAsked.length);
     for (key in questionItem.choices) {
       var choice = questionItem.choices[key];
       var choiceText = "<p class='choice-line'><a class='choice' onclick='recordAnswerChoice(event)' data-choice=" + key + "  data-question=" + questionItem.id + ">" + key + ':&nbsp;&nbsp; ' + choice + "</a></p>";
@@ -111,6 +123,7 @@ buttonEl.addEventListener('click', doStartQuiz);
     }
     qpart.innerHTML = questionText;
     questionsAsked.push(questionItem);
+    hideAnswerPart();
  }
 
  function recordAnswerChoice(evt) {
@@ -118,10 +131,12 @@ buttonEl.addEventListener('click', doStartQuiz);
     const choice = evt.target.dataset.choice;
 
     var questValue = questions.find((q) => q.id === questionId);
-    var responseText = "<span class='wrong-answer'>Wrong</span>";
+    var responseText = "<span class='wrong-answer'>Wrong!</span>";
     if (questValue && questValue.answer === choice) {
-        responseText = "<span class='right-answer'>Correct</span>";
+        responseText = "<span class='right-answer'>Correct!</span>";
         correctlyAnswered.push(questValue);
+    } else {
+       timeLeftToCompleteQuestions -= WRONG_VALUE_TIME_PENALTY;
     }
 
     showAnswersPart(responseText);
@@ -143,4 +158,27 @@ buttonEl.addEventListener('click', doStartQuiz);
   segment.style.display = "none";
   segment = document.querySelector(".question-part");
   segment.style.display = "none";
+
+  segment = document.querySelector(".submit-button");
+  segment.addEventListener('click', saveScore);
+ }
+
+ function saveScore() {
+  const initials = document.querySelector("#initials-input");
+  const initText = initials.value;
+  if (!initText || initText.trim() === "") {
+      alert("Please enter your initials");
+      return;
+  }
+ }
+
+ function doTiming() {
+  const timer = document.querySelector(".timer");
+  timer.textContent = timeLeftToCompleteQuestions;
+  setTimeout(updateTimer,  1000);
+ }
+
+ function updateTimer() {
+   timeLeftToCompleteQuestions--;
+   doTiming();
  }
