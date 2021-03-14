@@ -9,7 +9,7 @@ var questions = [
             D: 'Float'
        },
        answer: 'D',
-       id: 1
+       id: '1'
    },
    {
     question: 'Inside which HTML element do we put the JavaScript types?',
@@ -21,7 +21,7 @@ var questions = [
          D: '&lt;style&gt;'
     },
     answer: 'A',
-    id: 2
+    id: '2'
    },
    {
     question: 'A set of unordered properties that, has a name and value is called______',
@@ -33,7 +33,7 @@ var questions = [
          D: 'Object'
     },
     answer: 'D',
-    id: 3
+    id: '3'
    },
    {
     question: 'The execution of a function stops when the program control encounters the _________ statement in the body of the function.',
@@ -45,7 +45,7 @@ var questions = [
          D: 'goto'
     },
     answer: 'A',
-    id: 4
+    id: '4'
    },
    {
     question: 'Which of the following function of Array object applies a function simultaneously against two values of the array (from right-to-left) as to reduce it to a single value?',
@@ -57,7 +57,7 @@ var questions = [
          D: 'reduceRight()'
     },
     answer: 'D',
-    id: 5
+    id: '5'
    }
 ];
 
@@ -108,9 +108,9 @@ buttonEl.addEventListener('click', doStartQuiz);
     const choice = evt.target.dataset.choice;
 
     var questValue = questions.find((q) => q.id === questionId);
-    var responseText = "Wrong";
+    var responseText = "<span class='wrong-answer'>Wrong</span>";
     if (questValue && questValue.answer === choice) {
-        responseText = "Correct";
+        responseText = "<span class='right-answer'>Correct</span>";
     }
 
     showAnswersPart(responseText);
