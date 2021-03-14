@@ -61,6 +61,9 @@ var questions = [
    }
 ];
 
+var questionsAsked = [];
+var correctlyAnswered = [];
+
 const buttonEl = document.getElementById('startBtn');
 buttonEl.addEventListener('click', doStartQuiz);
 
@@ -82,7 +85,11 @@ buttonEl.addEventListener('click', doStartQuiz);
 
  function throwQuestionsAtUser() {
   const rdx = Math.random() * 5;
-  const currentQuestion = questions[Math.floor(rdx)];
+  var idx = Math.floor(rdx);
+  const currentQuestion = questions[idx];
+  if (questionsAsked.find((x) => x.id === currentQuestion.id)) {
+    throwQuestionsAtUser();
+  } 
   doOneQuestion(currentQuestion);
  }
 
@@ -108,10 +115,33 @@ buttonEl.addEventListener('click', doStartQuiz);
     const choice = evt.target.dataset.choice;
 
     var questValue = questions.find((q) => q.id === questionId);
+    questionsAsked.push(questValue);
     var responseText = "<span class='wrong-answer'>Wrong</span>";
     if (questValue && questValue.answer === choice) {
         responseText = "<span class='right-answer'>Correct</span>";
+        correctlyAnswered.push(questValue);
     }
 
     showAnswersPart(responseText);
+
+    console.log(questValue.id);
+
+    if (questionsAsked.length < questions.length) {
+      throwQuestionsAtUser();
+    } else {
+      showScoreSummary();
+    }
+
+ }
+
+ function showScoreSummary() {
+  var segment = document.querySelector(".score");
+  segment.innerHTML = correctlyAnswered.length;
+
+  segment = document.querySelector(".results-part");
+  segment.style.display = "flex";
+  segment = document.querySelector(".answer-part");
+  segment.style.display = "none";
+  segment = document.querySelector(".question-part");
+  segment.style.display = "none";
  }

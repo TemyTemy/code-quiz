@@ -126,7 +126,7 @@ header {
     color: #000;
 }
 
-.answer-part {
+.answer-part, .results-part {
     display: none;
     flex-direction: row;
     align-items: center;
@@ -141,7 +141,7 @@ header {
 }
 
 .answer-part > p {
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 700;
     margin-left: auto;
     margin-right: auto;
@@ -153,4 +153,40 @@ header {
 
 .right-answer {
     color: rgba(0, 110, 255, 0.753);
+}
+
+
+.results-part {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 25px;
+}
+
+.results-part > p {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.results-part > p.initials {
+    display: flex;
+    margin-top: 0px;
+}
+
+.results-part > h2 {
+   height: 20px;
+}
+
+.initials {
+    font-size: 14px;
+}
+
+.initials-title {
+    margin-right: 20px;
+}
+
+.score {
+    width: 120px;
+    padding-left: 20px;
+    font-weight: normal;
 }
