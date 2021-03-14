@@ -89,8 +89,9 @@ buttonEl.addEventListener('click', doStartQuiz);
   const currentQuestion = questions[idx];
   if (questionsAsked.find((x) => x.id === currentQuestion.id)) {
     throwQuestionsAtUser();
+  } else {
+    doOneQuestion(currentQuestion);
   } 
-  doOneQuestion(currentQuestion);
  }
 
  function showAnswersPart(text) {
@@ -102,12 +103,14 @@ buttonEl.addEventListener('click', doStartQuiz);
  function doOneQuestion(questionItem) {
     var questionText = "<h1>" + questionItem.question + "</h1>";
     var qpart = document.querySelector(".question-part");
+    console.log('Already asked: ', questionsAsked.length);
     for (key in questionItem.choices) {
       var choice = questionItem.choices[key];
       var choiceText = "<p class='choice-line'><a class='choice' onclick='recordAnswerChoice(event)' data-choice=" + key + "  data-question=" + questionItem.id + ">" + key + ':&nbsp;&nbsp; ' + choice + "</a></p>";
       questionText += choiceText;
     }
     qpart.innerHTML = questionText;
+    questionsAsked.push(questionItem);
  }
 
  function recordAnswerChoice(evt) {
@@ -115,7 +118,6 @@ buttonEl.addEventListener('click', doStartQuiz);
     const choice = evt.target.dataset.choice;
 
     var questValue = questions.find((q) => q.id === questionId);
-    questionsAsked.push(questValue);
     var responseText = "<span class='wrong-answer'>Wrong</span>";
     if (questValue && questValue.answer === choice) {
         responseText = "<span class='right-answer'>Correct</span>";
@@ -123,9 +125,6 @@ buttonEl.addEventListener('click', doStartQuiz);
     }
 
     showAnswersPart(responseText);
-
-    console.log(questValue.id);
-
     if (questionsAsked.length < questions.length) {
       throwQuestionsAtUser();
     } else {
