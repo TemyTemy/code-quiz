@@ -61,6 +61,22 @@ The application is a timed coding quiz with multiple choice questions on JavaScr
 
 
 
+**Image 7**
+
+![alt text](https://github.com/TemyTemy/code-quiz/blob/main/assets/screenshots/screenshot7.PNG)
+
+
+**Image 8**
+
+![alt text](https://github.com/TemyTemy/code-quiz/blob/main/assets/screenshots/screenshot8.PNG)
+
+
+**Image 9**
+
+![alt text](https://github.com/TemyTemy/code-quiz/blob/main/assets/screenshots/screenshot9.PNG)
+
+
+
 
 
 
