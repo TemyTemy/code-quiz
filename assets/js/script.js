@@ -68,6 +68,7 @@ const TOTAL_TIME_ALLOWED = 100;
 const WRONG_VALUE_TIME_PENALTY = 10;
 
 var timeLeftToCompleteQuestions;
+var timerFunction;
 
 const buttonEl = document.getElementById('startBtn');
 buttonEl.addEventListener('click', doStartQuiz);
@@ -142,13 +143,14 @@ buttonEl.addEventListener('click', doStartQuiz);
     showAnswersPart(responseText);
     if (questionsAsked.length < questions.length) {
       throwQuestionsAtUser();
-    } else {
+    } else {      
       showScoreSummary();
     }
 
  }
 
  function showScoreSummary() {
+  clearTimeout(timerFunction); 
   var segment = document.querySelector(".score");
   segment.innerHTML = correctlyAnswered.length;
 
@@ -175,10 +177,13 @@ buttonEl.addEventListener('click', doStartQuiz);
  function doTiming() {
   const timer = document.querySelector(".timer");
   timer.textContent = timeLeftToCompleteQuestions;
-  setTimeout(updateTimer,  1000);
+  timerFunction = setTimeout(updateTimer,  1000);
  }
 
  function updateTimer() {
    timeLeftToCompleteQuestions--;
+   if (timeLeftToCompleteQuestions === 0) {
+     showScoreSummary();
+   }
    doTiming();
  }
