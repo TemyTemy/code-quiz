@@ -64,7 +64,7 @@ var questions = [
 var questionsAsked = [];
 var correctlyAnswered = [];
 
-const TOTAL_TIME_ALLOWED = 100;
+const TOTAL_TIME_ALLOWED = 60;
 const WRONG_VALUE_TIME_PENALTY = 10;
 
 var timeLeftToCompleteQuestions;
@@ -144,6 +144,7 @@ buttonEl.addEventListener('click', doStartQuiz);
     if (questionsAsked.length < questions.length) {
       throwQuestionsAtUser();
     } else {      
+      timeLeftToCompleteQuestions = 0;
       showScoreSummary();
     }
 
@@ -151,6 +152,7 @@ buttonEl.addEventListener('click', doStartQuiz);
 
  function showScoreSummary() {
   clearTimeout(timerFunction); 
+  updateTimerText();
   var segment = document.querySelector(".score");
   segment.innerHTML = correctlyAnswered.length;
 
@@ -171,19 +173,32 @@ buttonEl.addEventListener('click', doStartQuiz);
   if (!initText || initText.trim() === "") {
       alert("Please enter your initials");
       return;
+  } else {
+    storeSummaryInLocalStorage(initText);
+    window.location = "highscores.html"
   }
  }
 
  function doTiming() {
-  const timer = document.querySelector(".timer");
-  timer.textContent = timeLeftToCompleteQuestions;
-  timerFunction = setTimeout(updateTimer,  1000);
+ 
+  updateTimerText();
+  if (timeLeftToCompleteQuestions === 0) {
+    showScoreSummary();     
+  } else {
+    timerFunction = setTimeout(updateTimer,  1000);    
+  }
  }
 
  function updateTimer() {
    timeLeftToCompleteQuestions--;
-   if (timeLeftToCompleteQuestions === 0) {
-     showScoreSummary();
-   }
-   doTiming();
+   doTiming();   
+ }
+
+ function updateTimerText() {
+  const timer = document.querySelector(".timer");
+  timer.textContent = timeLeftToCompleteQuestions;
+ }
+
+ function storeSummaryInLocalStorage(initials) {
+    localStorage.setItem(initials, correctlyAnswered.length);
  }
