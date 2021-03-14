@@ -10,25 +10,19 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
     <body>
-        <main>            
-            <section class="intro">
-                <div class="header-part">
-                    <h1>High Scores</h1>
-                </div>            
-            </section>    
-            <div class="high-scores">                
-                <p>
-                    <span>AA</span>
-                    <span>22</span>
-                </p>
-            </div>
-            <div class="high-scores-action">                
-                <p>                                    
-                  <button class="submit-button">Go Back</button>
-                  <button class="submit-button">Clear Scores</button>
-                </p>
-            </div>
+        <main>                                               
+            <div class="high-scores">   
+                <h1>High Scores</h1>
+                <span class="storage"></span>                            
+            </div>            
+            <p class="high-scores-action">                                    
+                <button id="back-button">Go Back</button>
+                <button id="clear-scores">Clear Scores</button>
+            </p>
         </main>
-        <script src="./assets/js/script.js"></script>
+        <script src="./assets/js/scores.js"></script>
+        <script>
+            listScores();
+        </script>
     </body>
 </html>

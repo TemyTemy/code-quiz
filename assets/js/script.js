@@ -61,11 +61,17 @@ var questions = [
    }
 ];
 
+var storedScores = undefined;
+const EMPTY_SCORES = {
+  list: []
+};
+
 var questionsAsked = [];
 var correctlyAnswered = [];
 
 const TOTAL_TIME_ALLOWED = 60;
 const WRONG_VALUE_TIME_PENALTY = 10;
+const SCORE_STORAGE_KEY = "score";
 
 var timeLeftToCompleteQuestions;
 var timerFunction;
@@ -79,6 +85,13 @@ buttonEl.addEventListener('click', doStartQuiz);
    timeLeftToCompleteQuestions = TOTAL_TIME_ALLOWED;
    throwQuestionsAtUser();
    doTiming();
+   var storedText = localStorage.getItem("score");
+   if (!storedText) {
+    storedScores = EMPTY_SCORES;
+   } else {
+    storedScores = JSON.parse(storedText);
+   }
+
  }
 
  function hideIntroPart() {
@@ -199,6 +212,24 @@ buttonEl.addEventListener('click', doStartQuiz);
   timer.textContent = timeLeftToCompleteQuestions;
  }
 
- function storeSummaryInLocalStorage(initials) {
-    localStorage.setItem(initials, correctlyAnswered.length);
+ function storeSummaryInLocalStorage(initialText) {
+    const scoreLine = {
+      initials: initialText,
+      score:  correctlyAnswered.length
+    };
+    storedScores.list.push(scoreLine);
+    localStorage.setItem(SCORE_STORAGE_KEY, JSON.stringify(storedScores));
+ }
+
+ function listScores() {
+    const segment = document.querySelector(".storage");
+    var storedScores = localStorage.getItem(SCORE_STORAGE_KEY);
+    var lineText = '';
+    var scores = storedScores.list;
+    for (var i = 0; i < scores.length; i++) {
+      var initial = scores[i].initials;
+      var score = scores[i].score;
+      lineText += "<p><span>" + initial +  "</span><span>" + score + "</span></p>";
+    }
+    segment.innerHTML = lineText;
  }
