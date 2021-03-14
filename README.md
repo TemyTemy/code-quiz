@@ -15,8 +15,9 @@ The application is a timed coding quiz with multiple choice questions on JavaScr
 - All done page will be displayed when all questions are answered or the timer reaches 0,
 - User then enters initials to save the high score.
 - User can either start the game again or clear the scores.
-- An error allert will be displayed if the user enters blank initials.
+- An error alert will be displayed if the user enters blank initials.
 - The application is responsive and can be viewed on different screens and devices.
+
 
 
 
