@@ -62,26 +62,29 @@ var questions = [
    }
 ];
 
+// Global constants
+const TOTAL_TIME_ALLOWED = 60;
+const WRONG_VALUE_TIME_PENALTY = 10;
+const SCORE_STORAGE_KEY = "score";
+const buttonEl = document.querySelector('.startBtn button');
 
-var storedScores = undefined;
 const EMPTY_SCORES = {
   list: []
 };
 
+// Global variables
+var storedScores = undefined;
 var questionsAsked = [];
 var correctlyAnswered = [];
-
-const TOTAL_TIME_ALLOWED = 60;
-const WRONG_VALUE_TIME_PENALTY = 10;
-const SCORE_STORAGE_KEY = "score";
 
 var timeLeftToCompleteQuestions;
 var timerFunction;
 
-const buttonEl = document.querySelector('.startBtn button');
+
 buttonEl.addEventListener('click', doStartQuiz);
 
- function doStartQuiz() {
+// Event listener for start quiz button click
+function doStartQuiz() {
    hideIntroPart();
    showQuestionsPart();
    timeLeftToCompleteQuestions = TOTAL_TIME_ALLOWED;
@@ -94,18 +97,21 @@ buttonEl.addEventListener('click', doStartQuiz);
     storedScores = JSON.parse(storedText);
    }
 
- }
+}
 
+// Hides the intro section
  function hideIntroPart() {
   var intro = document.querySelector(".intro");
   intro.style.display = "none";
  }
 
+ // Displays the question part
  function showQuestionsPart() {
   var qpart = document.querySelector(".question-part");
   qpart.style.display = "flex";
  }
 
+ // Selects the current available question
  function throwQuestionsAtUser() {
   const rdx = Math.random() * 5;
   var idx = Math.floor(rdx);
@@ -117,18 +123,22 @@ buttonEl.addEventListener('click', doStartQuiz);
   } 
  }
 
+ // Displays the choice result section with the 'text' parameter (Correct! or Wrong!)
  function showAnswersPart(text) {
   var qpart = document.querySelector(".answer-part");
   qpart.style.display = "flex";
   qpart.innerHTML = "<p>" + text + "</p>";
  }
 
+ // Hides the choice result section
  function hideAnswerPart() {
   var qpart = document.querySelector(".answer-part");
   qpart.style.display = "none";
   qpart.innerHTML = "<p></p>";
  }
 
+ // Shwos the current question and the possible options
+ // Attaches an event listener to the choices to call 'recordAndserChoice'
  function doOneQuestion(questionItem) {
     var questionText = "<h1>" + questionItem.question + "</h1>";
     var qpart = document.querySelector(".question-part");
@@ -141,6 +151,8 @@ buttonEl.addEventListener('click', doStartQuiz);
     questionsAsked.push(questionItem);    
  }
 
+ // Determins if the selected answer is correct, stores the quwstion 
+ // in the list of correctly answered questions
  function recordAnswerChoice(evt) {
     const questionId = evt.target.dataset.question;
     const choice = evt.target.dataset.choice;
@@ -163,6 +175,7 @@ buttonEl.addEventListener('click', doStartQuiz);
     }
  }
 
+ // Displays the summary of scores section
  function showScoreSummary() {
     clearTimeout(timerFunction); 
     updateTimerText();
@@ -180,6 +193,7 @@ buttonEl.addEventListener('click', doStartQuiz);
     segment.addEventListener('click', saveScore);
  }
 
+ // Saves the current score summary in local storage
  function saveScore() {
   const initials = document.querySelector("#initials-input");
   const initText = initials.value;
@@ -192,6 +206,7 @@ buttonEl.addEventListener('click', doStartQuiz);
   }
  }
 
+ // Do timing
  function doTiming() {
  
   updateTimerText();
@@ -202,16 +217,20 @@ buttonEl.addEventListener('click', doStartQuiz);
   }
  }
 
+ // Update the available time left variable
  function updateTimer() {
    timeLeftToCompleteQuestions--;
    doTiming();   
  }
 
+ // Update the timer section with the time left value
  function updateTimerText() {
   const timer = document.querySelector(".timer");
   timer.textContent = timeLeftToCompleteQuestions;
  }
 
+
+ // Do the actual storage of score summary in local storage
  function storeSummaryInLocalStorage(initialText) {
     const scoreLine = {
       initials: initialText,
@@ -221,6 +240,7 @@ buttonEl.addEventListener('click', doStartQuiz);
     localStorage.setItem(SCORE_STORAGE_KEY, JSON.stringify(storedScores));
  }
 
+ // Display list of scores section
  function listScores() {
     const segment = document.querySelector(".storage");
     var storedScores = localStorage.getItem(SCORE_STORAGE_KEY);

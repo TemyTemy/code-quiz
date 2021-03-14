@@ -1,14 +1,16 @@
- /* css variables
-reset.css
-media-queries
-data attributes
-normalise.css
-semantics */
+ 
 
+:root {
+    --violet: blueviolet;
+    --white: white;
+    --black: black;
+}
 
 *{
     box-sizing: border-box;
 }
+
+/* Media Queries */
 
 @media screen and (max-width: 600px) {
     .results-part > p.initials {
@@ -28,6 +30,7 @@ semantics */
     }
   }
 
+  /* Body/Main section */
 body {
     background-color: cadetblue;
     width:100%;
@@ -40,14 +43,14 @@ nav {
      display: flex;
      flex-direction: row;
      justify-content: space-between;
-     color: white;
+     color: var(--white);
      width: 60%;
 
 }
 
 nav a {
      text-decoration: none;
-     color: white;
+     color: var(--white);
 }
 
 main {
@@ -66,7 +69,7 @@ main {
     background-color:cornflowerblue;
     height: fit-content;
     width: 100%;
-    color: white;
+    color: var(--white);
     border-radius: 5px;
 
 }
@@ -75,10 +78,10 @@ main {
     display: none;
     flex-direction: column;
     align-items: left;
-    background-color:#fff;
+    background-color:var(--white);
     height: fit-content;
     width: 60%;
-    color: #000;
+    color: var(--black);
     border-radius: 5px;
     padding-bottom: 20px;
 }
@@ -108,7 +111,7 @@ main {
     width: 100%;
     /* width: 100px; */
     height: 100px;
-    color: white;
+    color: var(--white);
     font-size: 32px;
     border-radius: 5px;
     
@@ -125,6 +128,7 @@ header {
     justify-content: space-around;
 }    
 
+/* Quiz/ choice section */
 .quiz-start{
     display: none;
 }
@@ -133,7 +137,7 @@ header {
     display: flex;
     flex-direction: row;
     text-align: left;
-    background-color: blueviolet;
+    background-color: var(--violet);
     min-height: 40px;
     width: max-content;
     padding: 6px 20px 0px 20px;
@@ -141,31 +145,32 @@ header {
 }
 
 .choice-line:hover {
-    background-color: #fff;
+    background-color: var(--white);
 }
 
 .choice-line a {
     font-weight: 600;
-    color: #fff;
+    color: var(--white);
     text-decoration: none;
 }
 
 .choice-line a:hover {
-    color: #000;
+    color: var(--black);
 }
 
+/* Answer section */
 .answer-part, .results-part {
     display: none;
     flex-direction: row;
     align-items: center;
-    background-color:#fff;
+    background-color: var(--white);
     height: fit-content;
     width: 60%;
-    color: #000;
+    color: var(--black);
     border-style: none;
     border-top-style: solid;
     border-top-width: 1px;
-    border-top-color: #000;
+    border-top-color: var(--black);
 }
 
 .answer-part > p {
@@ -182,6 +187,8 @@ header {
 .right-answer {
     color: rgba(0, 110, 255, 0.753);
 }
+
+/* Result part */
 
 .results-part {
     display: none;
@@ -204,6 +211,7 @@ header {
    height: 20px;
 }
 
+/* Entering initial section */
 .initials {
     font-size: 14px;
 }
@@ -216,6 +224,7 @@ header {
     margin-right: 5px;
 }
 
+/* Score/Highscore */
 .score {
     width: 120px;
     padding-left: 20px;
@@ -228,7 +237,7 @@ header {
     align-items: flex-start;
     padding: 0px 25px 30px 25px;
     height: fit-content;
-    background-color: #fff;
+    background-color: var(--white);
     width: max-content;
     margin-top: 30px;
 }
@@ -240,10 +249,10 @@ header {
     flex-direction: row;
     width: 100%;
     justify-content: space-between;
-    background-color: blueviolet;
+    background-color: var(--violet);
     padding-left: 20px;
     padding-right: 20px;
-    color: #fff;
+    color: var(--white);
     margin-bottom: 0px;
 }
 
@@ -260,7 +269,7 @@ header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: #fff;
+    background-color: var(--white);
     padding: 15px 15px 15px 25px;
 }
 
@@ -278,9 +287,9 @@ header {
 }
 
 button {
-    background-color: blueviolet;
+    background-color: var(--violet);
     border-radius: 5px;
-    color: #fff;
+    color: var(--white);
 }
 
 .high-scores > .storage > p > .empty-scores {
