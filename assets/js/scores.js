@@ -14,5 +14,9 @@ const SCORE_STORAGE_KEY = "score";
     segment.innerHTML = lineText;
  }
 
- segment = document.querySelector(".back-button");
- segment.addEventListener('click', saveScore);
+ function goBack() {
+     window.location = "index.html";
+ }
+
+ segment = document.querySelector("#back-button");
+ segment.addEventListener('click', goBack);

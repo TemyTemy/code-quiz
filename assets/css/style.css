@@ -75,7 +75,7 @@ main {
 }
 
 
-#startBtn button {
+.startBtn button {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -84,7 +84,6 @@ main {
     /* width: 100px; */
     height: 100px;
     color: white;
-    background-color: teal;
     font-size: 32px;
     border-radius: 5px;
     
@@ -198,10 +197,11 @@ header {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 0px 25px 0px 25px;
+    padding: 0px 25px 30px 25px;
     height: fit-content;
     background-color: #fff;
     width: 20%;
+    margin-top: 30px;
 }
 
 .high-scores > .storage > p {
@@ -215,13 +215,14 @@ header {
     padding-left: 20px;
     padding-right: 20px;
     color: #fff;
+    margin-bottom: 0px;
 }
 
 .high-scores > .storage {
     font-size: 18px;
     font-weight: 700;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
 }
 

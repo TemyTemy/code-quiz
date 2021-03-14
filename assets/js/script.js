@@ -76,7 +76,7 @@ const SCORE_STORAGE_KEY = "score";
 var timeLeftToCompleteQuestions;
 var timerFunction;
 
-const buttonEl = document.getElementById('startBtn');
+const buttonEl = document.querySelector('.startBtn button');
 buttonEl.addEventListener('click', doStartQuiz);
 
  function doStartQuiz() {
