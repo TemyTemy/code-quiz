@@ -24,7 +24,7 @@ The application is a timed coding quiz with multiple choice questions on JavaScr
 
 **Image 1**  
 
-  ![alt text](https://github.com/TemyTemy/password-generator/blob/main/Assets/screenshot1.PNG)
+  ![alt text](https://github.com/TemyTemy/code-quiz/blob/main/assets/screenshots/screenshot1.PNG)
 
 
 
@@ -32,67 +32,31 @@ The application is a timed coding quiz with multiple choice questions on JavaScr
 
 **Image 2**
 
-![alt text](https://github.com/TemyTemy/password-generator/blob/main/Assets/screenshot2.PNG)
+![alt text](https://github.com/TemyTemy/code-quiz/blob/main/assets/screenshots/screenshot2.PNG)
 
 
 
 **Image 3**
 
-![alt text](https://github.com/TemyTemy/password-generator/blob/main/Assets/screenshot3.PNG)
+![alt text](https://github.com/TemyTemy/code-quiz/blob/main/assets/screenshots/screenshot3.PNG)
 
 
 
 **Image 4**
 
-![alt text](https://github.com/TemyTemy/password-generator/blob/main/Assets/screenshot4.PNG)
+![alt text](https://github.com/TemyTemy/code-quiz/blob/main/assets/screenshots/screenshot4.PNG)
 
 
 
 **Image 5**
 
-![alt text](https://github.com/TemyTemy/password-generator/blob/main/Assets/screenshot5.PNG)
+![alt text](https://github.com/TemyTemy/code-quiz/blob/main/assets/screenshots/screenshot5.PNG)
 
 
 
 **Image 6**
 
-![alt text](https://github.com/TemyTemy/password-generator/blob/main/Assets/screenshot6.PNG)
-
-
-
-**Image 7**
-
-![alt text](https://github.com/TemyTemy/password-generator/blob/main/Assets/screenshot7.PNG)
-
-
-
-**Image 8**
-
-![alt text](https://github.com/TemyTemy/password-generator/blob/main/Assets/screenshot8.PNG)
-
-
-
-**Image 9**
-
-![alt text](https://github.com/TemyTemy/password-generator/blob/main/Assets/screenshot9.PNG)
-
-
-
-**Image 10**
-
-![alt text](https://github.com/TemyTemy/password-generator/blob/main/Assets/screenshot10.PNG)
-
-
-
-**Image 11**
-
-![alt text](https://github.com/TemyTemy/password-generator/blob/main/Assets/screenshot11.PNG)
-
-
-
-**Image 12**
-
-![alt text](https://github.com/TemyTemy/password-generator/blob/main/Assets/screenshot12.PNG)
+![alt text](https://github.com/TemyTemy/code-quiz/blob/main/assets/screenshots/screenshot6.PNG)
 
 
 
@@ -101,11 +65,10 @@ The application is a timed coding quiz with multiple choice questions on JavaScr
 
 ## Reference
 
-The list of special characters were taken from https://www.owasp.org/index.php/Password_special_characters
+The list of questions were taken from https://www.javatpoint.com/javascript-mcq
 
 
 ## Links on Github
 
 - The source code repository is available at this link: https://github.com/TemyTemy/code-quiz
-- The home page to the website is available at this link: https://temytemy.github.io/password-generator/
-
+- The home page to the website is available at this link: https://temytemy.github.io/code-quiz/
