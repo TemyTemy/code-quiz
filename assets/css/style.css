@@ -12,38 +12,68 @@ semantics */
 
 body {
     background-color: cadetblue;
-    width: 80%;
-    margin-left: 15px;
+    width:100%;
+    height: 100%;
+    margin: 0px;
+    font-family: 'Baloo 2', cursive;
 }
 
-#nav {
+nav {
      display: flex;
      flex-direction: row;
-     justify-content: space-around;
+     justify-content: space-between;
      color: white;
+     width: 1200px;
+
 }
- #nav a {
+
+nav a {
      text-decoration: none;
      color: white;
- }
+}
 
-#headerDiv {
+main {
+   width: 100%;
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+
+.header-part {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: center; */
-    background-color: navy;
+    background-color:cornflowerblue;
     height: 200px ;
     width: 1200px;
     color: white;
-    margin: 15px;
     border-radius: 5px;
 
 }
 
-#headerDiv > h1 {
+.question-part {
+    display: none;
+    flex-direction: column;
+    align-items: left;
+    background-color:#fff;
+    height: fit-content;
+    width: 1200px;
+    color: #000;
+    border-radius: 5px;
+    padding-bottom: 20px;
+}
+
+.header-part > h1 {
     font-size: 32px;
 }
+
+.question-part > h1 {
+    font-size: 32px;
+    margin-left: 20px;
+}
+
 
 #startBtn button {
     display: flex;
@@ -51,7 +81,6 @@ body {
     align-items: center;
     justify-content: center;
     width: 1200px;
-    margin: 20px;
     /* width: 100px; */
     height: 100px;
     color: white;
@@ -61,6 +90,58 @@ body {
     
 }
 
-#quizStart{
+header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}    
+
+.quiz-start{
     display: none;
+}
+
+.choice-line {
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    background-color: blueviolet;
+    min-height: 40px;
+    width: max-content;
+    padding: 6px 20px 0px 20px;
+    margin: 0px 20px 4px 20px;
+}
+
+.choice-line:hover {
+    background-color: #fff;
+}
+
+.choice-line a {
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+}
+
+.choice-line a:hover {
+    color: #000;
+}
+
+.answer-part {
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    background-color:#fff;
+    height: fit-content;
+    width: 1200px;
+    color: #000;
+    border-style: none;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: #000;
+}
+
+.answer-part > p {
+    font-size: 14px;
+    margin-left: auto;
+    margin-right: auto;
 }

@@ -1,26 +1,3 @@
-// var body = window.body;
-// var containerEl = document.createElement('div');
-// var quizDiv = document.createElement('div');
-// var resultDiv = document.createElement('div');
-// var submitDiv = document.createElement('div');
-
-
-// var containerHeading = document.createElement('h1');
-// var containerPara = document.createElement('p');
-// var timerEl = document.createElement('button');
-
-// containerHeading.textContent ='Code Quiz';
-// containerPara.textContent ='Welcome to the code quiz. Each question is timed';
-//timerEl.textContent('')
-
-// containerEl.appendChild(containerHeading);
-// //body.appendChild(containerEl);
-// containerEl.appendChild(containerPara);
-// body.appendChild(containerEl);
-
-// containerEl.setAttribute('style', 'background-color: blue;');
-// body.appendChild(containerEl);
-
 var questions = [
    {
        question: 'Which of the following is not JavaScript Data Types?',
@@ -32,18 +9,19 @@ var questions = [
             D: 'Float'
        },
        answer: 'D',
-
+       id: 1
    },
    {
     question: 'Inside which HTML element do we put the JavaScript types?',
     choices: {
 
-         A: '<script>',
-         B: '<head>',
-         C: '<meta>',
-         D: '<style>'
+         A: '&lt;script&gt;',
+         B: '&lt;head&gt;',
+         C: '&lt;meta&gt;',
+         D: '&lt;style&gt;'
     },
     answer: 'A',
+    id: 2
    },
    {
     question: 'A set of unordered properties that, has a name and value is called______',
@@ -55,6 +33,7 @@ var questions = [
          D: 'Object'
     },
     answer: 'D',
+    id: 3
    },
    {
     question: 'The execution of a function stops when the program control encounters the _________ statement in the body of the function.',
@@ -66,6 +45,7 @@ var questions = [
          D: 'goto'
     },
     answer: 'A',
+    id: 4
    },
    {
     question: 'Which of the following function of Array object applies a function simultaneously against two values of the array (from right-to-left) as to reduce it to a single value?',
@@ -77,44 +57,61 @@ var questions = [
          D: 'reduceRight()'
     },
     answer: 'D',
-   },
-   
-
-]
+    id: 5
+   }
+];
 
 const buttonEl = document.getElementById('startBtn');
-buttonEl.addEventListener('click', function(){
-   const quizStartEl = document.getElementById('quizStart');
-   quizStartEl.setAttribute('style','display: none;');
+buttonEl.addEventListener('click', doStartQuiz);
 
+ function doStartQuiz() {
+   hideIntroPart();
+   showQuestionsPart();
+   throwQuestionsAtUser();
+ }
 
-})
+ function hideIntroPart() {
+  var intro = document.querySelector(".intro");
+  intro.style.display = "none";
+ }
 
-// Timer function
-let timer = 60;
+ function showQuestionsPart() {
+  var qpart = document.querySelector(".question-part");
+  qpart.style.display = "flex";
+ }
 
-// Question function
+ function throwQuestionsAtUser() {
+  const rdx = Math.random() * 5;
+  const currentQuestion = questions[Math.floor(rdx)];
+  doOneQuestion(currentQuestion);
+ }
 
-// Result function  ---- localStorage
+ function showAnswersPart(text) {
+  var qpart = document.querySelector(".answer-part");
+  qpart.style.display = "flex";
+  qpart.innerHTML = "<p>" + text + "</p>";
+ }
 
-var studentGrade = {
-    student: student.value,
-    grade: grade.value,
-    comment: comment.value.trim()
-  };
-  
-  localStorage.setItem("Initials", document.querySelector(".resultForm").textContent ) ;
-  
-  localStorage.setItem("Highscore",   document.querySelector(".resultForm").textContent ) ;
-  renderMessage();
-  
-  });
-  
-  function showResult() {
-    var quizQuestions = JSON.parse(localStorage.getItem("questions"));
-    if (questions !== null) {
-      document.querySelector(".resultForm").textContent =  + 
-      " received a/an " + lastGrade.grade
+ function doOneQuestion(questionItem) {
+    var questionText = "<h1>" + questionItem.question + "</h1>";
+    var qpart = document.querySelector(".question-part");
+    for (key in questionItem.choices) {
+      var choice = questionItem.choices[key];
+      var choiceText = "<p class='choice-line'><a class='choice' onclick='recordAnswerChoice(event)' data-choice=" + key + "  data-question=" + questionItem.id + ">" + key + ':&nbsp;&nbsp; ' + choice + "</a></p>";
+      questionText += choiceText;
     }
-  }
-  
+    qpart.innerHTML = questionText;
+ }
+
+ function recordAnswerChoice(evt) {
+    const questionId = evt.target.dataset.question;
+    const choice = evt.target.dataset.choice;
+
+    var questValue = questions.find((q) => q.id === questionId);
+    var responseText = "Wrong";
+    if (questValue && questValue.answer === choice) {
+        responseText = "Correct";
+    }
+
+    showAnswersPart(responseText);
+ }
