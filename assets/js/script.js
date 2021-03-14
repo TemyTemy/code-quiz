@@ -1,3 +1,4 @@
+// Questions
 var questions = [
    {
        question: 'Which of the following is not JavaScript Data Types?',
@@ -60,6 +61,7 @@ var questions = [
     id: '5'
    }
 ];
+
 
 var storedScores = undefined;
 const EMPTY_SCORES = {
@@ -136,8 +138,7 @@ buttonEl.addEventListener('click', doStartQuiz);
       questionText += choiceText;
     }
     qpart.innerHTML = questionText;
-    questionsAsked.push(questionItem);
-    hideAnswerPart();
+    questionsAsked.push(questionItem);    
  }
 
  function recordAnswerChoice(evt) {
@@ -150,7 +151,7 @@ buttonEl.addEventListener('click', doStartQuiz);
         responseText = "<span class='right-answer'>Correct!</span>";
         correctlyAnswered.push(questValue);
     } else {
-       timeLeftToCompleteQuestions -= WRONG_VALUE_TIME_PENALTY;
+        timeLeftToCompleteQuestions -= WRONG_VALUE_TIME_PENALTY;
     }
 
     showAnswersPart(responseText);
@@ -160,24 +161,23 @@ buttonEl.addEventListener('click', doStartQuiz);
       timeLeftToCompleteQuestions = 0;
       showScoreSummary();
     }
-
  }
 
  function showScoreSummary() {
-  clearTimeout(timerFunction); 
-  updateTimerText();
-  var segment = document.querySelector(".score");
-  segment.innerHTML = correctlyAnswered.length;
+    clearTimeout(timerFunction); 
+    updateTimerText();
+    var segment = document.querySelector(".score");
+    segment.innerHTML = correctlyAnswered.length;
 
-  segment = document.querySelector(".results-part");
-  segment.style.display = "flex";
-  segment = document.querySelector(".answer-part");
-  segment.style.display = "none";
-  segment = document.querySelector(".question-part");
-  segment.style.display = "none";
+    segment = document.querySelector(".results-part");
+    segment.style.display = "flex";
+    segment = document.querySelector(".answer-part");
+    segment.style.display = "none";
+    segment = document.querySelector(".question-part");
+    segment.style.display = "none";
 
-  segment = document.querySelector(".submit-button");
-  segment.addEventListener('click', saveScore);
+    segment = document.querySelector(".submit-button");
+    segment.addEventListener('click', saveScore);
  }
 
  function saveScore() {
